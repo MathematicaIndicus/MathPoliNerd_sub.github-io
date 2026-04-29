@@ -1,1 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Math&amp;Poli Nerd</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
 
+<!-- ░░ NAVBAR ░░ -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a class="logo" href="#" onclick="showPage('home'); return false;">
+      <span class="logo-main">Math<span>&amp;</span>Poli Nerd</span>
+      <span class="logo-sub">Ideas · Analysis · Musings</span>
+    </a>
+    <ul class="nav-links">
+      <li><a class="nav-link" href="#" onclick="showPage('home'); return false;">Home</a></li>
+      <li><a class="nav-link" href="#" onclick="showPage('about'); return false;">About Me</a></li>
+      <li><a class="nav-link" href="#" onclick="showPage('blogs'); return false;">Blogs</a></li>
+      <li><a class="nav-link nav-cta" href="#" onclick="showPage('contact'); return false;">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a class="nav-link" href="#" onclick="showPage('home'); toggleMenu(); return false;">Home</a>
+  <a class="nav-link" href="#" onclick="showPage('about'); toggleMenu(); return false;">About Me</a>
+  <a class="nav-link" href="#" onclick="showPage('blogs'); toggleMenu(); return false;">Blogs</a>
+  <a class="nav-link" href="#" onclick="showPage('contact'); toggleMenu(); return false;">Contact</a>
+</div>
+
+
+<!-- ████████████████████  HOME PAGE  ████████████████████ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container" style="display:contents">
+      <div class="hero-text container" style="padding-right:60px">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          <span class="section-label">Welcome to My Corner</span>
+        </div>
+        <h1 class="hero-title">
+          Where <em>Numbers</em><br>Meet <em>Nations</em>
+        </h1>
+        <p class="hero-subtitle">
+          A personal blog exploring the fascinating intersections of mathematics, political science, and the world we live in — written with rigor and curiosity.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="showPage('blogs')">Read the Blog &rarr;</button>
+          <button class="btn btn-outline" onclick="showPage('about')">About Me</button>
+        </div>
+      </div>
+      <!-- ░░ POSTCARD SCENE ░░ -->
+      <div class="postcard-scene">
+
+        <!-- Shadow card behind (decorative tilt) -->
+        <div class="postcard postcard--shadow"></div>
+
+        <!-- Main postcard -->
+        <div class="postcard postcard--main">
+
+          <!-- Image area — replace the div below with <img src="your-image.jpg" alt="..."> -->
+          <div class="postcard-img">
+            <div class="postcard-img-placeholder">
+                <img src="https://images.pexels.com/photos/5491026/pexels-photo-5491026.jpeg" alt="Math&Poli" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"/>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".35">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              <span>Add your image here</span>
+            </div>
+          </div>
+
+          <!-- Postcard footer strip -->
+          <div class="postcard-footer">
+            <div class="postcard-footer-left">
+              <p class="postcard-caption">Where Numbers<br>Meet Nations</p>
+              <p class="postcard-from">— Math &amp; Poli Nerd</p>
+            </div>
+            <div class="postcard-footer-right">
+              <!-- Postage stamp -->
+              <div class="stamp">
+                <div class="stamp-inner">π</div>
+                <span class="stamp-label">Math · Poli</span>
+              </div>
+              <!-- Postmark -->
+              <div class="postmark">
+                <div class="postmark-ring">
+                  <span class="postmark-year">2025</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Decorative corner tab -->
+          <div class="postcard-corner-tab"></div>
+        </div>
+
+        <!-- Small floating tag -->
+        <div class="postcard-tag">
+          <span class="postcard-tag-label">Est.</span>
+          <span class="postcard-tag-year">2025</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Ticker strip -->
+  <div class="featured-strip">
+    <div class="strip-inner">
+      <div class="strip-item"><span class="strip-dot"></span> Game Theory</div>
+      <div class="strip-item"><span class="strip-dot"></span> Electoral Systems</div>
+      <div class="strip-item"><span class="strip-dot"></span> Probability &amp; Policy</div>
+      <div class="strip-item"><span class="strip-dot"></span> Statistical Modeling</div>
+      <div class="strip-item"><span class="strip-dot"></span> Political Philosophy</div>
+      <div class="strip-item"><span class="strip-dot"></span> Voting Theory</div>
+      <div class="strip-item"><span class="strip-dot"></span> Econometrics</div>
+      <div class="strip-item"><span class="strip-dot"></span> Democracy &amp; Data</div>
+      <div class="strip-item"><span class="strip-dot"></span> Game Theory</div>
+      <div class="strip-item"><span class="strip-dot"></span> Electoral Systems</div>
+      <div class="strip-item"><span class="strip-dot"></span> Probability &amp; Policy</div>
+      <div class="strip-item"><span class="strip-dot"></span> Statistical Modeling</div>
+      <div class="strip-item"><span class="strip-dot"></span> Political Philosophy</div>
+      <div class="strip-item"><span class="strip-dot"></span> Voting Theory</div>
+      <div class="strip-item"><span class="strip-dot"></span> Econometrics</div>
+      <div class="strip-item"><span class="strip-dot"></span> Democracy &amp; Data</div>
+    </div>
+  </div>
+
+  <!-- Latest Posts -->
+  <section class="home-posts">
+    <div class="container">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-label">Latest Writings</p>
+          <h2 class="section-title">From the Blog</h2>
+        </div>
+        <button class="btn btn-outline" onclick="showPage('blogs')">View All &rarr;</button>
+      </div>
+      <div class="posts-grid">
+
+        <article class="post-card reveal" onclick="showPage('blogs')">
+          <div class="card-img-wrap">
+            <div class="card-img"></div>
+            <span class="card-cat">Game Theory</span>
+          </div>
+          <div class="card-body">
+            <p class="card-meta">April 12, 2025 &nbsp;·&nbsp; 8 min read</p>
+            <h3 class="card-title">Nash Equilibria in Coalition Governments</h3>
+            <p class="card-excerpt">How do political parties decide when to cooperate? A game-theoretic analysis of coalition formation under imperfect information.</p>
+          </div>
+          <div class="card-footer">
+            <span class="card-read">Read Article &rarr;</span>
+            <span class="card-time">8 min</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</div><!-- /home -->
+
+
+<!-- ████████████████████  ABOUT PAGE  ████████████████████ -->
+<div class="page" id="page-about">
+  <div class="about-page">
+    <div class="container">
+
+      <div class="about-hero">
+        <div class="about-img-wrap reveal">
+          <div class="about-img">
+            <img src="E:\NerdyMatheStudent\Math Simulations\MathPoliNerd_Subsidary\Assets\MyPicture.jpeg" alt="Anurag Goswami" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"/>
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;font-family:var(--font-ui);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".4">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              Your Photo Here
+            </div>
+          </div>
+          <div class="about-img-deco"></div>
+        </div>
+        <div class="reveal">
+          <p class="section-label">About Me</p>
+          <h1 class="about-name">Anurag Goswami</h1>
+          <p class="about-title-tag">Mathematician · Geopolitical Enthusiast · Writer</p>
+          <p class="about-bio">Hello! I'm Anurag, a second year B.Sc. student currently majoring in Mathematics. I have a keen interest in knowing about things, mainly 'Traditional-Mathematics' like Number Theory, Linear Algebra, Differential Equations and real life 'Modelling' related stuffs. I started this blog for a very specific reason - to cover my 'Backlogs'. I know it might sound funny, but this is the only way I can complete my overdue pile of work - By writing about it! and trying to teach others.</p>
+          <p class="about-bio">But then you might wonder...Why "Politics"? Politics has been a subject of fascination for me since a long time. But since I am  starting my journey in Mathematics, I thought it would be interesting to explore how mathematical concepts can be applied to understand political phenomena.
+            So here I am, trying to bridge the gap between these two seemingly different fields. Though there is no hard and fast rult that I will only write about these two subjects, I am open to exploring other topics as well. The main goal of this blog is to share my thoughts and ideas with others. Hope you'll find it interesting and informative!
+          </p>
+          <div class="about-divider"></div>
+          <p class="about-bio">Btw, when I'm not writing or studying, you'll find me reading philosophy, running, or losing at chess.</p>
+          <div class="about-stats">
+            <div class="stat-box"><div class="stat-num">1+</div><div class="stat-label">Posts</div></div>
+            <div class="stat-box"><div class="stat-num">0+</div><div class="stat-label">Years</div></div>
+            <div class="stat-box"><div class="stat-num">0+</div><div class="stat-label">Readers</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="interests-section reveal">
+        <p class="section-label">What I Write About</p>
+        <h2 class="section-title" style="margin-top:10px;margin-bottom:0">Fields of Interest</h2>
+        <div class="interests-grid">
+          <div class="interest-card">
+            <div class="interest-icon">📐</div>
+            <h3 class="interest-title">Mathematics &amp; Formal Methods</h3>
+            <p class="interest-body">From number theory to combinatorics, I explore how formal mathematical structures can models illuminate social and digital phenomena. Expect proofs, puzzles, and beautiful abstractions.</p>
+          </div>
+          <div class="interest-card">
+            <div class="interest-icon">🗳️</div>
+            <h3 class="interest-title">Political Science &amp; Democracy</h3>
+            <p class="interest-body">Electoral systems, legislative behaviour, comparative politics — I analyse institutions and political actors with the same precision I'd bring to a mathematics problem.</p>
+          </div>
+          <div class="interest-card">
+            <div class="interest-icon">🎯</div>
+            <h3 class="interest-title">Game Theory</h3>
+            <p class="interest-body">Strategic interaction is at the heart of politics. I use game-theoretic frameworks to understand why actors behave the way they do under uncertainty and competition.</p>
+          </div>
+          <div class="interest-card">
+            <div class="interest-icon">📊</div>
+            <h3 class="interest-title">Statistics &amp; Data</h3>
+            <p class="interest-body">What does the data actually say? I dig into political and economic datasets to separate signal from noise, and to test theories against empirical reality.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- /about -->
+
+
+<!-- ████████████████████  BLOGS PAGE  ████████████████████ -->
+<div class="page" id="page-blogs">
+  <div class="blogs-page">
+    <div class="container">
+
+      <div class="blogs-hero reveal">
+        <p class="section-label">The Archive</p>
+        <h1 class="blogs-hero-title">Essays, Analysis<br>&amp; Ideas</h1>
+        <p class="blogs-hero-subtitle">Explorations at the boundary of mathematics, politics, and ideas.</p>
+      </div>
+
+      <div class="featured-blog reveal">
+        <div>
+          <p class="featured-label">✦ Featured Essay</p>
+          <h2 class="featured-title">Can Mathematics Resolve Political Deadlock?</h2>
+          <p class="featured-excerpt">A long-form exploration of how mathematical optimisation theory might be applied to design fairer and more stable political institutions.</p>
+          <button class="btn btn-white">Read Essay &rarr;</button>
+        </div>
+        <div class="featured-img">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:8px;font-family:var(--font-ui);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+            Featured Image
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" onclick="filterPosts(this,'all')">All</button>
+        <button class="filter-btn" onclick="filterPosts(this,'game-theory')">Game Theory</button>
+        <button class="filter-btn" onclick="filterPosts(this,'voting')">Voting Theory</button>
+        <button class="filter-btn" onclick="filterPosts(this,'econ')">Political Economy</button>
+        <button class="filter-btn" onclick="filterPosts(this,'philosophy')">Philosophy</button>
+        <button class="filter-btn" onclick="filterPosts(this,'analysis')">Analysis</button>
+        <button class="filter-btn" onclick="filterPosts(this,'statistics')">Statistics</button>
+        <button class="filter-btn" onclick="filterPosts(this,'algebra')">Algebra</button>
+      </div>
+
+      <div class="blog-list">
+
+        <article class="blog-row reveal" data-cat="algebra">
+          <div class="blog-row-img-wrap"><div class="blog-row-img">
+            <img src="https://images.pexels.com/photos/12264565/pexels-photo-12264565.jpeg" alt="Blog Post" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"/>
+            <div style="position:absolute;top:8px;left:8px;background:rgba(0,0,0,.7);color:#fff;padding:4px 8px;font-size:.65rem;text-transform:uppercase;border-radius:4px;">
+              Algebra
+            </div>
+          </div></div>
+          <div>
+            <p class="blog-row-cat">Algebra</p>
+            <h3 class="blog-row-title">Symmetry in Nature</h3>
+            <p class="blog-row-excerpt">An exploration of how symmetry principles manifest in natural phenomena, from crystal structures to biological forms and even in our everyday games.</p>
+            <div class="blog-row-footer">
+              <span class="blog-row-meta">April 29, 2026 &nbsp;·&nbsp; 8 min read</span>
+              <span class="blog-row-read">Read &rarr;</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div><!-- /blogs -->
+
+
+<!-- ████████████████████  CONTACT PAGE  ████████████████████ -->
+<div class="page" id="page-contact">
+  <div class="contact-page">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div class="reveal">
+          <p class="section-label">Get In Touch</p>
+          <h1 class="contact-heading">Let's start a<br><em>conversation</em></h1>
+          <p class="contact-body">Whether you want to discuss an idea, collaborate on something, or just say hello — I'd love to hear from you.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div>
+                <div class="contact-item-label">Email</div>
+                <div class="contact-item-val">your@email.com</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <div class="contact-item-label">Location</div>
+                <div class="contact-item-val">Your City, Country</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🎓</div>
+              <div>
+                <div class="contact-item-label">Affiliation</div>
+                <div class="contact-item-val">Your University / Institution</div>
+              </div>
+            </div>
+          </div>
+          <div class="social-row">
+            <div class="social-btn" title="Twitter/X">𝕏</div>
+            <div class="social-btn" title="LinkedIn">in</div>
+            <div class="social-btn" title="GitHub">&#x2665;</div>
+            <div class="social-btn" title="RSS">&#x2605;</div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="contact-form-wrap">
+            <h2 class="form-title">Send a Message</h2>
+            <div class="success-msg" id="successMsg">✓ Thanks! I'll get back to you soon.</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" placeholder="Jane" id="fname"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" placeholder="Doe" id="lname"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="jane@example.com" id="email"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <select class="form-select" id="subject">
+                <option value="">Select a topic…</option>
+                <option>Collaboration</option>
+                <option>Feedback on a Post</option>
+                <option>General Inquiry</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-textarea" placeholder="Your message here…" id="message"></textarea>
+            </div>
+            <button class="btn btn-primary form-submit" onclick="submitForm()">Send Message &rarr;</button>
+            <p class="form-note">I typically reply within 2–3 business days.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><!-- /contact -->
+
+
+<!-- ░░ FOOTER ░░ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-main">Math<span>&amp;</span>Poli Nerd</div>
+        <p class="footer-desc">A personal blog at the intersection of mathematics and political science. Ideas worth thinking rigorously about.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <div class="footer-links">
+          <span class="footer-link" onclick="showPage('home')">Home</span>
+          <span class="footer-link" onclick="showPage('about')">About Me</span>
+          <span class="footer-link" onclick="showPage('blogs')">Blogs</span>
+          <span class="footer-link" onclick="showPage('contact')">Contact</span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Topics</div>
+        <div class="footer-links">
+          <span class="footer-link">Game Theory</span>
+          <span class="footer-link">Voting Theory</span>
+          <span class="footer-link">Political Economy</span>
+          <span class="footer-link">Econometrics</span>
+          <span class="footer-link">Philosophy</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Math&amp;Poli Nerd. All rights reserved.</span>
+      <span>Built with passion &amp; a love for ideas</span>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>
