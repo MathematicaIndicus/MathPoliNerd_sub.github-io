@@ -1,0 +1,17 @@
+{
+  "name": "mathpoli-nerd-blog",
+  "version": "1.0.0",
+  "description": "Personal blog with a lightweight local backend and Markdown/LaTeX editor.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "blog",
+    "markdown",
+    "latex",
+    "cms"
+  ],
+  "author": "",
+  "license": "MIT"
+}

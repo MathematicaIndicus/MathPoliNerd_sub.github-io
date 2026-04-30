@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Admin | Math&amp;Poli Nerd</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lora:wght@400;500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+  <style>
+    :root {
+      --paper: #f7f0e5;
+      --panel: #fffaf2;
+      --ink: #1f211d;
+      --muted: #6f695f;
+      --line: #ded0bc;
+      --accent: #8d4f2a;
+      --accent-dark: #5e331d;
+      --green: #526f45;
+      --shadow: 0 22px 70px rgba(50, 36, 21, .14);
+      --font-display: "Playfair Display", serif;
+      --font-body: "Lora", serif;
+      --font-ui: "Jost", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--font-body);
+      background:
+        radial-gradient(circle at top left, rgba(141, 79, 42, .18), transparent 34rem),
+        linear-gradient(135deg, #f8efe2 0%, #efe0c9 100%);
+    }
+
+    header {
+      padding: 28px clamp(18px, 4vw, 52px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: .95;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-family: var(--font-ui);
+      letter-spacing: .04em;
+    }
+
+    .top-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    a, button {
+      color: inherit;
+      font-family: var(--font-ui);
+    }
+
+    button, .link-button {
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fffaf2;
+      padding: 11px 18px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    button:hover, .link-button:hover { transform: translateY(-2px); background: var(--accent-dark); }
+    .ghost { background: transparent; color: var(--accent-dark); }
+    .danger { border-color: #a33a2f; background: #a33a2f; }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(240px, 330px) 1fr;
+      gap: 24px;
+      padding: 0 clamp(18px, 4vw, 52px) 48px;
+    }
+
+    aside, .editor, .preview {
+      background: rgba(255, 250, 242, .82);
+      border: 1px solid rgba(94, 51, 29, .14);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    aside { padding: 20px; height: fit-content; }
+    .editor { padding: clamp(18px, 3vw, 30px); }
+    .workspace { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .preview { padding: clamp(18px, 3vw, 30px); min-height: 520px; overflow-wrap: anywhere; }
+
+    .panel-title {
+      margin: 0 0 16px;
+      font-family: var(--font-ui);
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: var(--accent-dark);
+    }
+
+    .post-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .post-list-item {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff7ed;
+      color: var(--ink);
+      text-align: left;
+      border-radius: 18px;
+      padding: 13px 14px;
+    }
+
+    .post-list-item.active {
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+    }
+
+    .post-list-title {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .post-list-meta {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-family: var(--font-ui);
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fffdf8;
+      color: var(--ink);
+      padding: 12px 14px;
+      font: 1rem var(--font-ui);
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(141, 79, 42, .12);
+    }
+
+    textarea {
+      min-height: 360px;
+      resize: vertical;
+      line-height: 1.6;
+      font-family: "Consolas", "Courier New", monospace;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .status {
+      margin-left: auto;
+      color: var(--green);
+      font-family: var(--font-ui);
+      font-weight: 600;
+    }
+
+    .preview h1, .preview h2, .preview h3 {
+      font-family: var(--font-display);
+    }
+
+    .preview p, .preview li {
+      line-height: 1.8;
+    }
+
+    .preview code {
+      background: #efe2d0;
+      border-radius: 6px;
+      padding: 2px 5px;
+    }
+
+    .preview pre {
+      background: #211a15;
+      color: #fff4e7;
+      border-radius: 18px;
+      padding: 18px;
+      overflow: auto;
+    }
+
+    .hint {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-family: var(--font-ui);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1050px) {
+      main, .workspace { grid-template-columns: 1fr; }
+      header { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Blog Workshop</h1>
+      <p class="subtitle">Write Markdown, render LaTeX, and publish to your local blog.</p>
+    </div>
+    <div class="top-actions">
+      <a class="link-button ghost" href="/">View Site</a>
+      <button type="button" onclick="newPost()">New Post</button>
+    </div>
+  </header>
+
+  <main>
+    <aside>
+      <p class="panel-title">Posts</p>
+      <p class="hint">Run with <strong>npm start</strong>, then save using the local admin token printed in the terminal.</p>
+      <label>
+        Admin Token
+        <input id="token" type="password" autocomplete="off" placeholder="local-dev-token" />
+      </label>
+      <div class="post-list" id="postList"></div>
+    </aside>
+
+    <section class="workspace">
+      <form class="editor" id="editorForm">
+        <p class="panel-title">Editor</p>
+        <input id="postId" type="hidden" />
+        <label>
+          Title
+          <input id="title" required placeholder="A rigorous little title" />
+        </label>
+        <div class="form-grid">
+          <label>
+            Slug
+            <input id="slug" required placeholder="my-blog-post" />
+          </label>
+          <label>
+            Category
+            <select id="category">
+              <option value="analysis">Analysis</option>
+              <option value="algebra">Algebra</option>
+              <option value="statistics">Statistics</option>
+              <option value="game-theory">Game Theory</option>
+              <option value="voting">Voting Theory</option>
+              <option value="econ">Political Economy</option>
+              <option value="philosophy">Philosophy</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          Excerpt
+          <input id="excerpt" placeholder="One or two sentences for the blog listing." />
+        </label>
+        <label>
+          Image URL
+          <input id="image" placeholder="https://..." />
+        </label>
+        <label>
+          Content
+          <textarea id="content" placeholder="Write Markdown here. Inline math: $a^2+b^2=c^2$. Display math: $$E=mc^2$$"></textarea>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;margin-bottom:0;">
+          <input id="published" type="checkbox" style="width:auto;" checked />
+          Published
+        </label>
+        <div class="actions">
+          <button type="submit">Save Post</button>
+          <button class="ghost" type="button" onclick="duplicatePost()">Duplicate</button>
+          <button class="danger" type="button" onclick="deletePost()">Delete</button>
+          <span class="status" id="status"></span>
+        </div>
+      </form>
+
+      <article class="preview" id="preview">
+        <p class="panel-title">Live Preview</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.9/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"></script>
+  <script>
+    const fields = ["postId", "title", "slug", "category", "excerpt", "image", "content", "published"];
+    let posts = [];
+
+    const $ = id => document.getElementById(id);
+    const tokenInput = $("token");
+    tokenInput.value = localStorage.getItem("blogAdminToken") || "local-dev-token";
+    tokenInput.addEventListener("input", () => localStorage.setItem("blogAdminToken", tokenInput.value));
+
+    function authHeaders() {
+      return {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${tokenInput.value.trim()}`
+      };
+    }
+
+    function slugify(value) {
+      return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    }
+
+    function setStatus(message, isError = false) {
+      $("status").textContent = message;
+      $("status").style.color = isError ? "#a33a2f" : "var(--green)";
+      if (message) setTimeout(() => $("status").textContent = "", 3500);
+    }
+
+    function renderPreview() {
+      const markdown = $("content").value || "Start writing and your preview will bloom here.";
+      const html = marked.parse(markdown);
+      $("preview").innerHTML = `<p class="panel-title">Live Preview</p>${DOMPurify.sanitize(html)}`;
+      renderMathInElement($("preview"), {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ],
+        throwOnError: false
+      });
+    }
+
+    function fillForm(post = {}) {
+      $("postId").value = post.id || "";
+      $("title").value = post.title || "";
+      $("slug").value = post.slug || "";
+      $("category").value = post.category || "analysis";
+      $("excerpt").value = post.excerpt || "";
+      $("image").value = post.image || "";
+      $("content").value = post.content || "";
+      $("published").checked = post.published !== false;
+      renderPreview();
+      renderPostList(post.id);
+    }
+
+    function formPayload() {
+      return {
+        title: $("title").value,
+        slug: $("slug").value,
+        category: $("category").value,
+        excerpt: $("excerpt").value,
+        image: $("image").value,
+        content: $("content").value,
+        published: $("published").checked
+      };
+    }
+
+    function renderPostList(activeId = $("postId").value) {
+      const list = $("postList");
+      if (!posts.length) {
+        list.innerHTML = "<p class='hint'>No posts yet. Start a fresh one.</p>";
+        return;
+      }
+
+      list.innerHTML = posts.map(post => `
+        <button class="post-list-item ${post.id === activeId ? "active" : ""}" type="button" onclick="selectPost('${post.id}')">
+          <span class="post-list-title">${post.title}</span>
+          <span class="post-list-meta">${post.published ? "Published" : "Draft"} · ${post.category}</span>
+        </button>
+      `).join("");
+    }
+
+    async function loadPosts() {
+      const response = await fetch("/api/posts", { headers: { "Authorization": `Bearer ${tokenInput.value.trim()}` } });
+      posts = await response.json();
+      if (!Array.isArray(posts)) posts = [];
+      renderPostList();
+      if (!$("postId").value && posts[0]) fillForm(posts[0]);
+    }
+
+    function selectPost(id) {
+      const post = posts.find(item => item.id === id);
+      if (post) fillForm(post);
+    }
+
+    function newPost() {
+      fillForm({
+        title: "",
+        slug: "",
+        category: "analysis",
+        excerpt: "",
+        image: "",
+        content: "# Untitled\n\nWrite your idea here.\n\n$$\n\\int_a^b f(x)\\,dx\n$$",
+        published: true
+      });
+    }
+
+    function duplicatePost() {
+      $("postId").value = "";
+      $("title").value = `${$("title").value} Copy`;
+      $("slug").value = slugify($("title").value);
+      setStatus("Duplicated locally. Save when ready.");
+    }
+
+    async function deletePost() {
+      const id = $("postId").value;
+      if (!id) return setStatus("Nothing saved to delete yet.", true);
+      if (!confirm("Delete this post? This cannot be undone.")) return;
+
+      const response = await fetch(`/api/posts/${encodeURIComponent(id)}`, {
+        method: "DELETE",
+        headers: authHeaders()
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        return setStatus(error.error || "Delete failed.", true);
+      }
+
+      setStatus("Post deleted.");
+      await loadPosts();
+      fillForm(posts[0] || {});
+    }
+
+    $("title").addEventListener("input", () => {
+      if (!$("postId").value) $("slug").value = slugify($("title").value);
+    });
+
+    ["content", "title", "excerpt"].forEach(id => $(id).addEventListener("input", renderPreview));
+
+    $("editorForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      const id = $("postId").value;
+      const method = id ? "PUT" : "POST";
+      const url = id ? `/api/posts/${encodeURIComponent(id)}` : "/api/posts";
+
+      const response = await fetch(url, {
+        method,
+        headers: authHeaders(),
+        body: JSON.stringify(formPayload())
+      });
+
+      const payload = await response.json();
+      if (!response.ok) return setStatus(payload.error || "Save failed.", true);
+
+      setStatus("Saved.");
+      await loadPosts();
+      fillForm(payload);
+    });
+
+    loadPosts().then(renderPreview).catch(error => setStatus(error.message, true));
+  </script>
+</body>
+</html>

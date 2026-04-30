@@ -819,8 +819,21 @@ ul { list-style: none; }
   width: 100%; height: 100%;
   background: linear-gradient(135deg, var(--sky-pale) 0%, var(--beige-mid) 100%);
   transition: transform .6s ease;
+  position: relative;
 }
 .blog-row-img img { width: 100%; height: 100%; object-fit: cover; }
+.blog-row-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0,0,0,.72);
+  color: var(--white);
+  padding: 4px 8px;
+  font-family: var(--font-ui);
+  font-size: .65rem;
+  text-transform: uppercase;
+  border-radius: 4px;
+}
 .blog-row-cat {
   font-family: var(--font-ui);
   font-size: .65rem;
@@ -852,6 +865,89 @@ ul { list-style: none; }
   align-items: center;
   gap: 6px;
   transition: gap var(--transition);
+}
+
+.blog-loading {
+  font-family: var(--font-ui);
+  color: var(--ink-muted);
+  grid-column: 1 / -1;
+  padding: 24px 0;
+}
+
+.post-page {
+  padding: 80px 0 120px;
+}
+
+.post-back {
+  margin-bottom: 28px;
+}
+
+.post-reader {
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--beige-mid);
+  border-radius: 3px;
+  box-shadow: var(--shadow-sm);
+  padding: clamp(28px, 5vw, 64px);
+}
+
+.post-reader-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.05;
+  margin: 8px 0 14px;
+}
+
+.post-reader-meta {
+  font-family: var(--font-ui);
+  color: var(--ink-muted);
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.post-reader-image {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-bottom: 34px;
+}
+
+.post-reader-content {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--ink);
+}
+
+.post-reader-content h1,
+.post-reader-content h2,
+.post-reader-content h3 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  margin: 1.5em 0 .55em;
+}
+
+.post-reader-content p,
+.post-reader-content ul,
+.post-reader-content ol {
+  margin-bottom: 1.15em;
+}
+
+.post-reader-content code {
+  background: var(--beige-light);
+  border-radius: 4px;
+  padding: 2px 5px;
+}
+
+.post-reader-content pre {
+  background: var(--ink);
+  color: var(--white);
+  overflow: auto;
+  padding: 18px;
+  border-radius: 3px;
 }
 
 /* Featured blog banner */

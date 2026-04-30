@@ -1,0 +1,26 @@
+[
+  {
+    "id": "0c60bb68-0c87-43b1-a474-7b795f2c1967",
+    "title": "GUGUGA",
+    "slug": "guguga",
+    "category": "statistics",
+    "excerpt": "GoodBoy",
+    "image": "",
+    "content": "# Untitled\n\nWrite your idea here.\n\n$$\n\\int_a^b f(x)\\,dx\n$$",
+    "published": true,
+    "createdAt": "2026-04-30T16:02:13.110Z",
+    "updatedAt": "2026-04-30T16:02:13.110Z"
+  },
+  {
+    "id": "sample-symmetry-in-nature",
+    "title": "Symmetry in Nature",
+    "slug": "symmetry-in-nature",
+    "category": "algebra",
+    "excerpt": "An exploration of how symmetry principles manifest in natural phenomena, from crystal structures to biological forms and even in our everyday games.",
+    "image": "https://images.pexels.com/photos/12264565/pexels-photo-12264565.jpeg",
+    "content": "# Symmetry in Nature\n\nSymmetry is one of those ideas that appears both visually and algebraically. A square, for example, can be rotated by $90^\\circ$, $180^\\circ$, $270^\\circ$, or $360^\\circ$ and still look unchanged.\n\nThe set of these transformations forms a group. If $G$ is a group acting on an object $X$, then symmetry asks which transformations preserve the structure of $X$.\n\n$$\nG = \\{g : X \\to X \\mid g \\text{ preserves structure}\\}\n$$\n\nThat little definition is a bridge between geometry, algebra, physics, and even political systems where invariance and structure matter.",
+    "published": true,
+    "createdAt": "2026-04-29T12:00:00.000Z",
+    "updatedAt": "2026-04-29T12:00:00.000Z"
+  }
+]
