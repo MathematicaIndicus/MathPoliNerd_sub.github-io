@@ -4,10 +4,31 @@ const path = require("path");
 const crypto = require("crypto");
 
 const PORT = Number(process.env.PORT || 3000);
-const ADMIN_TOKEN = process.env.BLOG_ADMIN_TOKEN || "local-dev-token";
 const ROOT = __dirname;
 const DATA_DIR = path.join(ROOT, "data");
 const POSTS_FILE = path.join(DATA_DIR, "posts.json");
+const ENV_FILE = path.join(ROOT, ".env");
+
+function loadLocalEnv() {
+  if (!fs.existsSync(ENV_FILE)) return;
+
+  const lines = fs.readFileSync(ENV_FILE, "utf8").split(/\r?\n/);
+  lines.forEach(line => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return;
+
+    const separatorIndex = trimmed.indexOf("=");
+    if (separatorIndex === -1) return;
+
+    const key = trimmed.slice(0, separatorIndex).trim();
+    const value = trimmed.slice(separatorIndex + 1).trim().replace(/^["']|["']$/g, "");
+    if (key && process.env[key] === undefined) process.env[key] = value;
+  });
+}
+
+loadLocalEnv();
+
+const ADMIN_TOKEN = process.env.BLOG_ADMIN_TOKEN || "local-dev-token";
 
 const MIME_TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -223,6 +244,7 @@ ensureStore();
 server.listen(PORT, () => {
   console.log(`Math&Poli Nerd backend running at http://localhost:${PORT}`);
   console.log(`Admin editor: http://localhost:${PORT}/admin.html`);
-  console.log(`Local admin token: ${ADMIN_TOKEN}`);
-  console.log("Set BLOG_ADMIN_TOKEN before deploying anywhere public.");
+  console.log(process.env.BLOG_ADMIN_TOKEN
+    ? "Admin token loaded from BLOG_ADMIN_TOKEN."
+    : "Using fallback admin token: local-dev-token");
 });

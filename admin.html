@@ -241,10 +241,10 @@
   <main>
     <aside>
       <p class="panel-title">Posts</p>
-      <p class="hint">Run with <strong>npm start</strong>, then save using the local admin token printed in the terminal.</p>
+      <p class="hint">Run with <strong>npm start</strong>, then save using the admin token from your local <strong>.env</strong> file.</p>
       <label>
         Admin Token
-        <input id="token" type="password" autocomplete="off" placeholder="local-dev-token" />
+        <input id="token" type="password" autocomplete="off" placeholder="Paste BLOG_ADMIN_TOKEN" />
       </label>
       <div class="post-list" id="postList"></div>
     </aside>
@@ -315,7 +315,7 @@
 
     const $ = id => document.getElementById(id);
     const tokenInput = $("token");
-    tokenInput.value = localStorage.getItem("blogAdminToken") || "local-dev-token";
+    tokenInput.value = localStorage.getItem("blogAdminToken") || "";
     tokenInput.addEventListener("input", () => localStorage.setItem("blogAdminToken", tokenInput.value));
 
     function authHeaders() {
