@@ -241,6 +241,19 @@
       font-size: .9rem;
     }
 
+    .highlight-preview {
+      display: inline-block;
+      width: fit-content;
+      margin: 0 0 14px;
+      background: var(--mark-bg, #ffe08a);
+      color: var(--mark-color, #1f211d);
+      padding: .08em .28em;
+      border-radius: 4px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      font-family: var(--font-body);
+    }
+
     .status {
       margin-left: auto;
       color: var(--green);
@@ -255,6 +268,21 @@
     .preview p, .preview li {
       line-height: 1.8;
     }
+
+    .preview mark,
+    mark {
+      background: var(--mark-bg, #ffe08a);
+      color: var(--mark-color, #1f211d);
+      padding: .08em .28em;
+      border-radius: 4px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .preview .mark-yellow { --mark-bg: #ffe08a; --mark-color: #1f211d; }
+    .preview .mark-blue { --mark-bg: #d7ecff; --mark-color: #17324d; }
+    .preview .mark-green { --mark-bg: #dff5dc; --mark-color: #24451f; }
+    .preview .mark-pink { --mark-bg: #ffdce8; --mark-color: #582034; }
 
     .preview code {
       background: #efe2d0;
@@ -452,6 +480,24 @@
             <button class="ghost" type="button" onclick="insertImageBlock(true)">Insert With Caption</button>
           </div>
         </div>
+        <div class="media-helper">
+          <p class="media-helper-title">Highlight text</p>
+          <mark class="highlight-preview" id="highlightPreview">Highlighted sentence</mark>
+          <div class="form-grid">
+            <label>
+              Highlight Color
+              <input id="markBackground" value="#ffe08a" placeholder="#ffe08a, pink, rgb(255, 224, 138)" />
+            </label>
+            <label>
+              Text Color
+              <input id="markTextColor" value="#1f211d" placeholder="#1f211d" />
+            </label>
+          </div>
+          <p class="hint">Select text in the content box, then insert a mark. You can use hex, named, rgb(), or hsl() colors.</p>
+          <div class="media-actions">
+            <button class="ghost" type="button" onclick="insertHighlight()">Insert Highlight</button>
+          </div>
+        </div>
         <label>
           Content
           <textarea id="content" placeholder="Write Markdown here. Inline math: $a^2+b^2=c^2$. Display math: $$E=mc^2$$"></textarea>
@@ -545,6 +591,34 @@
       const cursor = before.length + prefix.length + text.length;
       textarea.focus();
       textarea.setSelectionRange(cursor, cursor);
+      renderPreview();
+    }
+
+    function safeCssColor(value, fallback) {
+      const color = String(value || "").trim();
+      if (!color) return fallback;
+      return /^[#a-zA-Z0-9.,%()\s-]{1,80}$/.test(color) ? color : fallback;
+    }
+
+    function updateHighlightPreview() {
+      const preview = $("highlightPreview");
+      if (!preview) return;
+      preview.style.setProperty("--mark-bg", safeCssColor($("markBackground").value, "#ffe08a"));
+      preview.style.setProperty("--mark-color", safeCssColor($("markTextColor").value, "#1f211d"));
+    }
+
+    function insertHighlight() {
+      const textarea = $("content");
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selected = textarea.value.slice(start, end) || "Highlighted sentence";
+      const background = escapeAttribute(safeCssColor($("markBackground").value, "#ffe08a"));
+      const textColor = escapeAttribute(safeCssColor($("markTextColor").value, "#1f211d"));
+      const highlighted = `<mark style="--mark-bg: ${background}; --mark-color: ${textColor};">${escapeHtml(selected)}</mark>`;
+
+      textarea.value = `${textarea.value.slice(0, start)}${highlighted}${textarea.value.slice(end)}`;
+      textarea.focus();
+      textarea.setSelectionRange(start + highlighted.length, start + highlighted.length);
       renderPreview();
     }
 
@@ -699,7 +773,9 @@
 
     ["content", "title", "excerpt"].forEach(id => $(id).addEventListener("input", renderPreview));
     ["inlineImageWidth", "inlineImageRotate"].forEach(id => $(id).addEventListener("input", syncMediaControlLabels));
+    ["markBackground", "markTextColor"].forEach(id => $(id).addEventListener("input", updateHighlightPreview));
     syncMediaControlLabels();
+    updateHighlightPreview();
 
     $("editorForm").addEventListener("submit", async event => {
       event.preventDefault();

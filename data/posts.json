@@ -1,5 +1,17 @@
 [
   {
+    "id": "3dc3c40f-3152-4b44-94a7-5f4a40685785",
+    "title": "Why Triangle Inequality?",
+    "slug": "the-axiom-that-never-changes",
+    "category": "analysis",
+    "excerpt": "Ever wondered why any axioms related to \"distance between any two points\" must satisfy the \"Triangle Inequality\"? Let's understand from scratch!",
+    "image": "https://images.pexels.com/photos/10895042/pexels-photo-10895042.jpeg",
+    "content": "# A Fun Analogy:\nSuppose you're planning a road trip.\nKolkata to Delhi is approximately $\\textbf{1470}$ km approx., Delhi to Chennai is $\\textbf{2181}$ km approx., and Chennai to Kolkata is $\\textbf{1700}$ km approx. \nThen Kolkata $\\to$ Delhi $\\to$ Chennai is approx. 3651 km, whereas Kolkata $\\to$ Chennai is just 1700 km approx. Why? Obviously you know the reason. The key principle: <mark class=\"mark-blue\">Any detour must be greater than our equal to the direct path</mark>\n, also known as the \"Triangle Inequality\". But the notion of distance in this case though understandable and commonly used is very trivial, so why not bend the notion a little bit.\nFor example you've become a professor at some prestigious University like IISc Bangalore. Every student is brilliant in their own way, but then also you wants to  measure the relative brilliance of each student. You define a distance function which takes the score of any two students as parameter and give the relative output like this :\n$$ d(\\text{X}, \\text{Y}) = |(Score_X) - (Score_Y) |^2$$\nLet's assume, Ashish scored 80, Swapna scored 70 and Meghna scored 60. According to our definition of distance:\n1) $d(\\text{Ashish}, \\text{Meghna}) = (80 - 60)^2$\n2) $d(\\text{Ashish}, \\text{Swapna}) + d(\\text{Swapna}, \\text{Meghna}) = 100 + 100 = 200$\n\n\nDoes this forms a distance function? Does this satisfy the famous \"Triangle Inequality\"? \nAccording to the formula, Ashish and Meghna are further apart than the sum of the two intermediate gaps. The triangle inequality is violated. And the consequence is real if you tried to cluster students by \"similarity\" using this formula, students who are genuinely close in performance could end up in completely different groups.",
+    "published": true,
+    "createdAt": "2026-06-29T07:04:34.014Z",
+    "updatedAt": "2026-06-29T15:34:37.439Z"
+  },
+  {
     "id": "0c60bb68-0c87-43b1-a474-7b795f2c1967",
     "title": "Symmetry in Nature",
     "slug": "sym-met-ry",
